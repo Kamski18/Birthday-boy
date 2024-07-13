@@ -6,6 +6,7 @@ import pytz
 import sqlite3
 import os
 from dotenv import load_dotenv
+import time
 
 load_dotenv()
 api = os.getenv("API")
@@ -95,10 +96,11 @@ def delete(message):
       name = bday[1]
       cur.execute("DELETE FROM birthday WHERE name=?", (name,))
       bot.send_message(id, "Birthday deleted successfully.")
+      
 
 id = 1160508602
 
-if name == "main":
+while True:
   def refresh(message):
     id = message.chat.id
     if id != 1160508602:
@@ -115,6 +117,7 @@ if name == "main":
             bot.send_message(id, f"Happy birthday, {name}!")
           else:
             bot.send_message(id, "No birthdays today.")
+            time.sleep(10000)
 
 
       
